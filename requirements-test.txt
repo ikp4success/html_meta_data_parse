@@ -1,0 +1,5 @@
+pytest==3.8.0
+pyflakes==2.1.1
+pytest-flakes==4.0.0
+requests-mock==1.5.2
+pre-commit==2.9.2
