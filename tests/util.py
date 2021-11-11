@@ -1,9 +1,4 @@
-
-
-def build_html(
-    html_dict_arr,
-    child_dict_arr=False
-):
+def build_html(html_dict_arr, child_dict_arr=False):
     html_body = ""
     if not child_dict_arr:
         html_body = "<html>"
@@ -17,24 +12,15 @@ def build_html(
             for k, v in attributes.items():
                 attr_build += " {}='{}' ".format(k, v)
             if body:
-                html_body += "{}{}{}".format(
-                    attr_build,
-                    attributes_c,
-                    body,
-                )
+                html_body += "{}{}{}".format(attr_build, attributes_c, body,)
             else:
-                html_body += "{}{}".format(
-                    attr_build,
-                    attributes_c
-                )
+                html_body += "{}{}".format(attr_build, attributes_c)
             child_arr = type_content.get("child_arr")
             if child_arr:
-                html_body += "{}".format(
-                    build_html(child_arr, child_dict_arr=True)
-                )
+                html_body += "{}".format(build_html(child_arr, child_dict_arr=True))
 
             html_body += "</{}>".format(type)
     if not child_dict_arr:
-        html_body += "</html>".format(type)
+        html_body += "</html>"
 
     return html_body

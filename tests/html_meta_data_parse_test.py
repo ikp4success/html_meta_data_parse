@@ -1,103 +1,42 @@
 import pytest
-from tests.util import build_html
+
 from html_meta_data_parse import HtmlMetaDataParse
-from html_meta_data_parse.util import (
-    format_to_fine_content,
-    format_content_list,
-)
+from html_meta_data_parse.util import format_content_list, format_to_fine_content
+from tests.util import build_html
 
 test_meta_data_keys = {
     "author": {
-        "name": [
-            "author"
-        ],
-        "property": [
-            "bt:author",
-            "article:publisher",
-            "dcterms.creator"
-        ],
-        "itemprop": [
-            "author",
-        ]
-
+        "name": ["author"],
+        "property": ["bt:author", "article:publisher", "dcterms.creator"],
+        "itemprop": ["author"],
     },
-
     "title": {
-        "name": [
-            "title",
-            "dcterms.title",
-            "",
-            "twitter:title"
-        ],
-        "property": [
-            "og:title"
-        ],
-        "itemprop": [
-            "title",
-        ]
+        "name": ["title", "dcterms.title", "", "twitter:title"],
+        "property": ["og:title"],
+        "itemprop": ["title"],
     },
-
     "image": {
-        "name": [
-            "image",
-            "twitter:image",
-            "thumbnail"
-        ],
-        "property": [
-            "og:image"
-        ],
-        "itemprop": [
-            "image",
-        ]
+        "name": ["image", "twitter:image", "thumbnail"],
+        "property": ["og:image"],
+        "itemprop": ["image"],
     },
-
     "content": {
-        "name": [
-            "description",
-            "twitter:description",
-            "twitter:image:alt"
-        ],
-        "property": [
-            "og:description",
-            "og:image:alt"
-        ],
-        "itemprop": [
-            "description",
-        ]
+        "name": ["description", "twitter:description", "twitter:image:alt"],
+        "property": ["og:description", "og:image:alt"],
+        "itemprop": ["description"],
     },
-
     "media": {
-        "name": [
-            "video",
-        ],
-        "property": [
-            "og:video",
-            "og:video:secure_url"
-        ],
-        "itemprop": [
-            "video",
-        ]
+        "name": ["video"],
+        "property": ["og:video", "og:video:secure_url"],
+        "itemprop": ["video"],
     },
-
     "audio": {
-        "name": [
-            "audio",
-        ],
-        "property": [
-            "og:audio",
-            "og:audio:secure_url"
-        ],
-        "itemprop": [
-            "audio",
-        ]
+        "name": ["audio"],
+        "property": ["og:audio", "og:audio:secure_url"],
+        "itemprop": ["audio"],
     },
-
     "pubdate": {
-        "name": [
-            "lastmod",
-            "pubdate",
-            "pubDate"
-        ],
+        "name": ["lastmod", "pubdate", "pubDate"],
         "property": [
             "og:pubdate",
             "bt:modDate",
@@ -105,52 +44,18 @@ test_meta_data_keys = {
             "article:published_time",
             "article:modified_time",
             "dcterms.modified",
-            "dcterms.date"
+            "dcterms.date",
         ],
-        "itemprop": [
-            "dateModified",
-            "dateCreated",
-            "datePublished",
-        ]
+        "itemprop": ["dateModified", "dateCreated", "datePublished"],
     },
-
-    "type": {
-        "name": [
-            "type"
-        ],
-        "property": [
-            "og:type"
-        ],
-    },
-
+    "type": {"name": ["type"], "property": ["og:type"]},
     "twitter_handle": {
-        "name": [
-            "twitter:site"
-        ],
-        "property": [
-            "og:twitter:site"
-        ],
-        "itemprop": [
-            "twitter:site",
-        ]
+        "name": ["twitter:site"],
+        "property": ["og:twitter:site"],
+        "itemprop": ["twitter:site"],
     },
-
-    "site_name": {
-        "name": [
-            "site_name"
-        ],
-        "property": [
-            "og:site_name"
-        ],
-    },
-    "url": {
-        "name": [
-            "url"
-        ],
-        "property": [
-            "og:url"
-        ],
-    }
+    "site_name": {"name": ["site_name"], "property": ["og:site_name"]},
+    "url": {"name": ["url"], "property": ["og:url"]},
 }
 
 
@@ -163,7 +68,7 @@ def headers():
         "Referer": "test.com",
         "origin": "test.com",
         "DNT": "1",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
     }
 
 
@@ -181,6 +86,7 @@ def test_meta_data_keys_fixt():
 def build_html_fixt():
     def _method(html_dict_arr):
         return build_html(html_dict_arr)
+
     return _method
 
 
@@ -189,107 +95,30 @@ def test_headers():
     return headers()
 
 
-def test_html_meta_data_parse(
-    test_meta_data_keys_fixt,
-    build_html_fixt,
-    requests_mock
-):
+def test_html_meta_data_parse(test_meta_data_keys_fixt, build_html_fixt, requests_mock):
     html_meta_data_parse = HtmlMetaDataParse()
     assert test_meta_data_keys_fixt == html_meta_data_parse.meta_keys
 
     """ Name Attributes """
     html_dict_arr = [
-        {
-            "meta": {
-                "attributes": {
-                    "content": "John Smith",
-                    "name": "author"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "Loves the Water",
-                    "name": "description"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "About John Smith",
-                    "name": "title"
-                }
-            }
-        },
+        {"meta": {"attributes": {"content": "John Smith", "name": "author"}}},
+        {"meta": {"attributes": {"content": "Loves the Water", "name": "description"}}},
+        {"meta": {"attributes": {"content": "About John Smith", "name": "title"}}},
         {
             "meta": {
                 "attributes": {
                     "content": "https://imageurl.com",
-                    "name": "twitter:image"
+                    "name": "twitter:image",
                 }
             }
         },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://videourl.com",
-                    "name": "video"
-                }
-            }
-        },
-
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://audiourl.com",
-                    "name": "audio"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "01/10/2090",
-                    "name": "pubdate"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "test article",
-                    "name": "type"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "@test",
-                    "name": "twitter:site"
-                }
-            }
-        },
-
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://www.cnn.com/",
-                    "name": "url"
-                }
-            }
-        },
-
-        {
-            "meta": {
-                "attributes": {
-                    "content": "Site Name",
-                    "name": "site_name"
-                }
-            }
-        },
+        {"meta": {"attributes": {"content": "https://videourl.com", "name": "video"}}},
+        {"meta": {"attributes": {"content": "https://audiourl.com", "name": "audio"}}},
+        {"meta": {"attributes": {"content": "01/10/2090", "name": "pubdate"}}},
+        {"meta": {"attributes": {"content": "test article", "name": "type"}}},
+        {"meta": {"attributes": {"content": "@test", "name": "twitter:site"}}},
+        {"meta": {"attributes": {"content": "https://www.cnn.com/", "name": "url"}}},
+        {"meta": {"attributes": {"content": "Site Name", "name": "site_name"}}},
     ]
 
     test_html = build_html_fixt(html_dict_arr)
@@ -309,33 +138,20 @@ def test_html_meta_data_parse(
     assert "Site Name" == meta_data["site_name"]
     assert "https://www.cnn.com/" == meta_data["url"]
 
-    alt_test_html = [{
-        "meta": {
-            "attributes": {
-                "content": "https://altimgurl.com",
-                "name": "image"
-            }
-        }
-    }]
+    alt_test_html = [
+        {"meta": {"attributes": {"content": "https://altimgurl.com", "name": "image"}}}
+    ]
 
     alt_test_html = build_html_fixt(alt_test_html)
     meta_data = html_meta_data_parse.get_meta_data_by_html(alt_test_html)
     assert "https://altimgurl.com" == meta_data["image"]
 
-    alt_test_html2 = [{
-        "head": {
-            "child_arr": [
-                {
-                    "title": {
-                        "body": "this is a title"
-                    }
-                }
-            ]
-        },
-        "body": {
-            "body": "this is a body"
+    alt_test_html2 = [
+        {
+            "head": {"child_arr": [{"title": {"body": "this is a title"}}]},
+            "body": {"body": "this is a body"},
         }
-    }]
+    ]
 
     alt_test_html2 = build_html_fixt(alt_test_html2)
     meta_data = html_meta_data_parse.get_meta_data_by_html(alt_test_html2)
@@ -343,11 +159,7 @@ def test_html_meta_data_parse(
     assert "this is a title" == meta_data["title"]
     assert "this is a body" == meta_data["content"]
 
-    alt_test_html3 = [{
-        "body": {
-            "body": "this is a body"
-        }
-    }]
+    alt_test_html3 = [{"body": {"body": "this is a body"}}]
 
     alt_test_html3 = build_html_fixt(alt_test_html3)
     meta_data = html_meta_data_parse.get_meta_data_by_html(alt_test_html3)
@@ -375,33 +187,27 @@ def test_html_meta_data_parse(
     html_dict_arr = [
         {
             "meta": {
-                "attributes": {
-                    "content": "John Smith",
-                    "property": "article:publisher"
-                }
+                "attributes": {"content": "John Smith", "property": "article:publisher"}
             }
         },
         {
             "meta": {
                 "attributes": {
                     "content": "Loves the Water",
-                    "property": "og:description"
+                    "property": "og:description",
                 }
             }
         },
         {
             "meta": {
-                "attributes": {
-                    "content": "About John Smith",
-                    "property": "og:title"
-                }
+                "attributes": {"content": "About John Smith", "property": "og:title"}
             }
         },
         {
             "meta": {
                 "attributes": {
                     "content": "https://imageurl.com",
-                    "property": "og:image"
+                    "property": "og:image",
                 }
             }
         },
@@ -409,68 +215,28 @@ def test_html_meta_data_parse(
             "meta": {
                 "attributes": {
                     "content": "https://videourl.com",
-                    "property": "og:video"
+                    "property": "og:video",
                 }
             }
         },
-
         {
             "meta": {
                 "attributes": {
                     "content": "https://audiourl.com",
-                    "property": "og:audio"
+                    "property": "og:audio",
                 }
             }
         },
+        {"meta": {"attributes": {"content": "01/10/2090", "property": "og:pubdate"}}},
+        {"meta": {"attributes": {"content": "test article", "property": "og:type"}}},
+        {"meta": {"attributes": {"content": "@test", "property": "og:twitter:site"}}},
         {
             "meta": {
-                "attributes": {
-                    "content": "01/10/2090",
-                    "property": "og:pubdate"
-                }
+                "attributes": {"content": "https://www.cnn.com/", "property": "og:url"}
             }
         },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "test article",
-                    "property": "og:type"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "@test",
-                    "property": "og:twitter:site"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://www.cnn.com/",
-                    "property": "og:url"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "@test",
-                    "property": "og:twitter:site"
-                }
-            }
-        },
-
-        {
-            "meta": {
-                "attributes": {
-                    "content": "Site Name",
-                    "property": "og:site_name"
-                }
-            }
-        },
+        {"meta": {"attributes": {"content": "@test", "property": "og:twitter:site"}}},
+        {"meta": {"attributes": {"content": "Site Name", "property": "og:site_name"}}},
     ]
 
     test_html = build_html_fixt(html_dict_arr)
@@ -507,63 +273,29 @@ def test_html_meta_data_parse(
 
     """ ItemProp Attributes """
     html_dict_arr = [
+        {"meta": {"attributes": {"content": "John Smith", "itemprop": "author"}}},
         {
             "meta": {
-                "attributes": {
-                    "content": "John Smith",
-                    "itemprop": "author"
-                }
+                "attributes": {"content": "Loves the Water", "itemprop": "description"}
+            }
+        },
+        {"meta": {"attributes": {"content": "About John Smith", "itemprop": "title"}}},
+        {
+            "meta": {
+                "attributes": {"content": "https://imageurl.com", "itemprop": "image"}
             }
         },
         {
             "meta": {
-                "attributes": {
-                    "content": "Loves the Water",
-                    "itemprop": "description"
-                }
+                "attributes": {"content": "https://videourl.com", "itemprop": "video"}
             }
         },
         {
             "meta": {
-                "attributes": {
-                    "content": "About John Smith",
-                    "itemprop": "title"
-                }
+                "attributes": {"content": "https://audiourl.com", "itemprop": "audio"}
             }
         },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://imageurl.com",
-                    "itemprop": "image"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://videourl.com",
-                    "itemprop": "video"
-                }
-            }
-        },
-
-        {
-            "meta": {
-                "attributes": {
-                    "content": "https://audiourl.com",
-                    "itemprop": "audio"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "01/10/2090",
-                    "itemprop": "dateModified"
-                }
-            }
-        },
+        {"meta": {"attributes": {"content": "01/10/2090", "itemprop": "dateModified"}}},
     ]
 
     """By Html"""
@@ -591,50 +323,23 @@ def test_html_meta_data_parse(
 
     """override meta keys"""
     ov_meta_keys = {
-        "testauthor": {
-            "testname": [
-                "test_namr"
-            ],
-
-        },
-
-        "testtitle": {
-            "testproperty": [
-                "test_title"
-            ],
-
-        },
-
-        "testimage": {
-            "testprop": [
-                "test_img"
-            ],
-
-        },
+        "testauthor": {"testname": ["test_namr"]},
+        "testtitle": {"testproperty": ["test_title"]},
+        "testimage": {"testprop": ["test_img"]},
     }
 
     ov_html_dict_arr = [
+        {"meta": {"attributes": {"content": "John Smith", "testname": "test_namr"}}},
         {
             "meta": {
-                "attributes": {
-                    "content": "John Smith",
-                    "testname": "test_namr"
-                }
-            }
-        },
-        {
-            "meta": {
-                "attributes": {
-                    "content": "Water Title",
-                    "testproperty": "test_title"
-                }
+                "attributes": {"content": "Water Title", "testproperty": "test_title"}
             }
         },
         {
             "meta": {
                 "attributes": {
                     "content": "https://imageurl.com",
-                    "testprop": "test_img"
+                    "testprop": "test_img",
                 }
             }
         },
@@ -644,8 +349,7 @@ def test_html_meta_data_parse(
 
     """By Html"""
     meta_data = html_meta_data_parse.get_meta_data_by_html(
-        ov_test_html,
-        override_meta_keys=ov_meta_keys
+        ov_test_html, override_meta_keys=ov_meta_keys
     )
 
     assert "John Smith" == meta_data["testauthor"]
@@ -669,32 +373,19 @@ def test_html_meta_data_parse(
 
 def test_build_html(build_html_fixt):
     html_dict_arr = [
-        {
-            "meta": {
-                "attributes": {
-                    "content": "John Smith",
-                    "name": "author"
-                }
-            }
-        },
-
+        {"meta": {"attributes": {"content": "John Smith", "name": "author"}}},
         {
             "body": {
-                "attributes": {
-                    "class": "align"
-                },
+                "attributes": {"class": "align"},
                 "body": "This is a body",
                 "child_arr": [
                     {
                         "div": {
-                            "attributes": {
-                                "class": "align-div",
-                                "id": "divid"
-                            },
-                            "body": "This is a div"
+                            "attributes": {"class": "align-div", "id": "divid"},
+                            "body": "This is a div",
                         }
                     },
-                ]
+                ],
             }
         },
     ]
