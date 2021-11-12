@@ -5,6 +5,7 @@ VENV_SENTINEL := $(VENV)/.sentinel
 VENV_PIP := $(VENV)/bin/pip $(PIP_EXTRA_OPTS)
 VENV_PRECOMMIT := $(VENV)/bin/pre-commit
 VENV_PYTEST := $(VENV)/bin/pytest
+VENV_TWINE := $(VENV)/bin/twine
 
 STAGE ?= dev
 
@@ -40,6 +41,16 @@ pre-commit: $(VENV_SENTINEL)
 .PHONY: test
 test:
 	$(VENV_PYTEST) -vv tests/
+
+
+.PHONY: deploy
+deploy:
+	# $(VENV_PIP) install --upgrade pip setuptools wheel
+	# $(VENV_PIP) install --upgrade build
+	# $(VENV_PIP) install --upgrade twine
+	# . $(VENV_ACTIVATE) ;\
+	# python -m build
+	$(VENV_TWINE) upload --repository testpypi dist/*
 
 
 clean:

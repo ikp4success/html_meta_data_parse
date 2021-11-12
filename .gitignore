@@ -1,5 +1,6 @@
 .pytest_cache/
 __pycache__/
 .eggs/
-#venv
+html_meta_data_parse.egg-info/
+dist/
 .venv
