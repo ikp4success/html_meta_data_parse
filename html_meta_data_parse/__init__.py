@@ -22,28 +22,17 @@ class HtmlMetaDataParse(object):
         self.proxy = proxy
 
     def get_meta_data_by_url(
-        self,
-        url=None,
-        override_meta_keys=None,
-        http_method="HEAD",
-        headers=None,
-        proxy=None,
+        self, url=None, override_meta_keys=None, headers=None, proxy=None,
     ):
-        if http_method not in ["HEAD", "GET"]:
-            raise Exception(
-                f"http_method {http_method} is invalid. Allowed Method HEAD, GET."
-            )
         url = url or self.url
         override_meta_keys = override_meta_keys or self.override_meta_keys
         proxy = proxy or self.proxy
         headers = headers or {}
         if url:
             try:
-                response = getattr(requests, http_method.lower())(
-                    url, headers=headers, proxies=proxy,
-                )
+                response = requests.get(url, headers=headers, proxies=proxy,)
                 return self.get_meta_data_by_html(
-                    html_text=response, override_meta_keys=override_meta_keys
+                    html_text=response.text, override_meta_keys=override_meta_keys
                 )
             except Exception as e:
                 return {"Error": repr(e)}

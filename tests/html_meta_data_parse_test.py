@@ -163,7 +163,6 @@ def test_html_meta_data_parse(test_meta_data_keys_fixt, build_html_fixt, request
 
     alt_test_html3 = build_html_fixt(alt_test_html3)
     meta_data = html_meta_data_parse.get_meta_data_by_html(alt_test_html3)
-    assert "this is a body" == meta_data["title"]
     assert "this is a body" == meta_data["content"]
 
     """By Url"""
@@ -355,7 +354,7 @@ def test_html_meta_data_parse(test_meta_data_keys_fixt, build_html_fixt, request
     assert "John Smith" == meta_data["testauthor"]
     assert "Water Title" == meta_data["testtitle"]
     assert "https://imageurl.com" == meta_data["testimage"]
-    assert "" == meta_data["title"]
+    assert meta_data["title"] is None
     assert "" == meta_data["content"]
 
     """By Url"""
@@ -400,7 +399,7 @@ def test_meta_class_attr():
     assert hasattr(html_meta_data_parse, "proxy")
     assert hasattr(html_meta_data_parse, "override_meta_keys")
     assert hasattr(html_meta_data_parse, "url")
-    assert hasattr(html_meta_data_parse, "meta")
+    assert hasattr(html_meta_data_parse, "html_text")
     assert hasattr(html_meta_data_parse, "meta_keys")
 
 

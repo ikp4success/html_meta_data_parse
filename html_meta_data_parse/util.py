@@ -6,7 +6,7 @@ def format_to_fine_content(content_list_selector):
     if isinstance(content_list_selector, SelectorList):
         content_list_selector = content_list_selector.extract()
 
-    content_bs = BeautifulSoup("".join(content_list_selector))
+    content_bs = BeautifulSoup("".join(content_list_selector), features="lxml")
     if content_bs:
         for cbs in content_bs(["script", "style", "meta", "noscript"]):
             cbs.decompose()
