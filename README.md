@@ -40,6 +40,10 @@ html_meta_data_parse.get_meta_data_by_url(https://example.com/)
 import requests
 res = requests.get("https://example.com/")
 html_meta_data_parse.get_meta_data_by_html(res.text)
+
+
+html_meta_data_parse = HtmlMetaDataParse(url="https://example.com/", proxy=<proxy_dict>)
+html_meta_data_parse.get_meta_data_by_url()
 ```
 #### Attributes
 * url
@@ -58,7 +62,7 @@ html_meta_data_parse.get_meta_data_by_html(html_text=html_text)
 ```
 
 ##### Override Meta Keys
-HtmlMetaDataParse uses a predefined set of keys to parse meta data from html content. However it also provides option to override meta keys of your choice
+HtmlMetaDataParse uses a predefined set of keys to parse meta data from html content. However it also provides an option to override meta keys of your choice.
 
 ```
 
