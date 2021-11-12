@@ -35,6 +35,11 @@ $ make test
 ```bash
 from html_meta_data_parse import HtmlMetaDataParse
 html_meta_data_parse = HtmlMetaDataParse()
+html_meta_data_parse.get_meta_data_by_url(https://example.com/)
+
+import requests
+res = requests.get("https://example.com/")
+html_meta_data_parse.get_meta_data_by_html(res.text)
 ```
 #### Attributes
 * url
@@ -133,6 +138,7 @@ meta_keys = {
 ```
 
 # Deploy
+Increment version in setup.py
 ```bash
 $ make deploy  # default pypi test
 
