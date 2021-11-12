@@ -54,7 +54,7 @@ deploy: ensure_git_clean
 	$(VENV_PIP) install --upgrade twine
 	. $(VENV_ACTIVATE) ;\
 	python -m build
-	$(VENV_TWINE) upload --repository $(STAGE)pypi dist/*
+	$(VENV_TWINE) upload --repository $(STAGE) dist/*
 
 
 clean:
