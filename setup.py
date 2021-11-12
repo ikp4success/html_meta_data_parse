@@ -23,6 +23,7 @@ setup(
     entry_points="""""",
     url="https://github.com/ikp4success/html_meta_data_parse",
     author="Immanuel George",
+    author_email="ikp4success@aol.com",
     license="MIT",
     description="Collects meta data from url, or html content.",
     long_description=long_description,
