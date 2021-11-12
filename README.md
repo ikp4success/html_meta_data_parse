@@ -142,7 +142,7 @@ meta_keys = {
 ```
 
 # Deploy
-Increment version in setup.py
+#### Increment version in setup.py
 ```bash
 $ make deploy STAGE=testpypi # test
 
