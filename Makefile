@@ -45,11 +45,11 @@ test:
 
 .PHONY: deploy
 deploy:
-	# $(VENV_PIP) install --upgrade pip setuptools wheel
-	# $(VENV_PIP) install --upgrade build
-	# $(VENV_PIP) install --upgrade twine
-	# . $(VENV_ACTIVATE) ;\
-	# python -m build
+	$(VENV_PIP) install --upgrade pip setuptools wheel
+	$(VENV_PIP) install --upgrade build
+	$(VENV_PIP) install --upgrade twine
+	. $(VENV_ACTIVATE) ;\
+	python -m build
 	$(VENV_TWINE) upload --repository testpypi dist/*
 
 
