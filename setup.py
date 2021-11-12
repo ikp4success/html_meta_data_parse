@@ -7,7 +7,7 @@ long_description = (pathlib.Path(__file__).parent.resolve() / "README.md").read_
 )
 setup(
     name="html_meta_data_parse",
-    version="0.0.3",
+    version="0.0.31",
     python_requires=">=3.6",
     packages=find_packages(exclude=["tests"]),
     package_data={},
@@ -25,7 +25,7 @@ setup(
     author="Immanuel George",
     author_email="ikp4success@aol.com",
     license="MIT",
-    description="Collects meta data from url, or html content.",
+    description="Collects metadata from URL, or HTML content.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
