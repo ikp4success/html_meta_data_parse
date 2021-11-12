@@ -27,11 +27,18 @@ Setup virtual environment
 ```bash
 $ make pre-commit
 ```
-# test
+
+### Test
 ```bash
 $ make test
 ```
 
+### Install
+```bash
+pip install html-meta-data-parse
+```
+
+### Example
 ```bash
 from html_meta_data_parse import HtmlMetaDataParse
 html_meta_data_parse = HtmlMetaDataParse()
