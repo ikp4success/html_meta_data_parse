@@ -10,6 +10,11 @@ VENV_TWINE := $(VENV)/bin/twine
 STAGE ?= test
 
 
+.PHONY: ensure_git_clean
+ensure_git_clean:
+	@echo This target requires a clean git state, please stash or commit your changes if this fails on the next line
+	test -z "$$(git status --porcelain)"
+
 .PHONY: ensure_no_venv
 ensure_no_venv:
 ifdef VIRTUAL_ENV
@@ -44,7 +49,7 @@ test:
 
 
 .PHONY: deploy
-deploy:
+deploy: ensure_git_clean
 	rm -rf dist/*
 	$(VENV_PIP) install --upgrade pip setuptools wheel
 	$(VENV_PIP) install --upgrade build
