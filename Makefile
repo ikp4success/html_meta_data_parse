@@ -7,8 +7,6 @@ VENV_PRECOMMIT := $(VENV)/bin/pre-commit
 VENV_PYTEST := $(VENV)/bin/pytest
 VENV_TWINE := $(VENV)/bin/twine
 
-STAGE ?= test
-
 
 .PHONY: ensure_git_clean
 ensure_git_clean:

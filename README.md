@@ -144,9 +144,9 @@ meta_keys = {
 # Deploy
 Increment version in setup.py
 ```bash
-$ make deploy  # default pypi test
+$ make deploy STAGE=testpypi # test
 
-$ make deploy STAGE=public
+$ make deploy STAGE=pypi # public
 ```
 
 
