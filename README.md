@@ -6,7 +6,7 @@
 [![bandit](https://github.com/PyCQA/bandit/workflows/Build%20and%20Test%20Bandit/badge.svg)](https://github.com/PyCQA/bandit)
 
 # About
-HtmlMetaDataParse, collects meta data from url, or html content.
+HtmlMetaDataParse, Collects metadata from URL, or HTML content.
 
 
 # Usage
