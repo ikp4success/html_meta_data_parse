@@ -11,7 +11,7 @@ setup(
     python_requires=">=3.6",
     packages=find_packages(exclude=["tests"]),
     package_data={},
-    install_requires=["beautifulsoup4=>4.10.0", "requests=>2.22.0", "parsel=>1.6.0"],
+    install_requires=["beautifulsoup4>=4.10.0", "requests>=2.22.0", "parsel>=1.6.0"],
     setup_requires=["pytest-runner"],
     tests_require=[
         "pytest==3.3.0",
