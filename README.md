@@ -136,7 +136,7 @@ meta_keys = {
 ```bash
 $ make deploy  # default pypi test
 
-$ make deploy STAGE=dev
+$ make deploy STAGE=public
 ```
 
 
