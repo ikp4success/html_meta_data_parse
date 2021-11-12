@@ -7,7 +7,7 @@ VENV_PRECOMMIT := $(VENV)/bin/pre-commit
 VENV_PYTEST := $(VENV)/bin/pytest
 VENV_TWINE := $(VENV)/bin/twine
 
-STAGE ?= dev
+STAGE ?= test
 
 
 .PHONY: ensure_no_venv
@@ -45,12 +45,13 @@ test:
 
 .PHONY: deploy
 deploy:
+	rm -rf dist/*
 	$(VENV_PIP) install --upgrade pip setuptools wheel
 	$(VENV_PIP) install --upgrade build
 	$(VENV_PIP) install --upgrade twine
 	. $(VENV_ACTIVATE) ;\
 	python -m build
-	$(VENV_TWINE) upload --repository testpypi dist/*
+	$(VENV_TWINE) upload --repository $(STAGE)pypi dist/*
 
 
 clean:
