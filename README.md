@@ -4,9 +4,10 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://github.com/timothycrosley/isort)
 [![bandit](https://github.com/PyCQA/bandit/workflows/Build%20and%20Test%20Bandit/badge.svg)](https://github.com/PyCQA/bandit)
+[![PyPI version](https://badge.fury.io/py/pip.svg)](https://badge.fury.io/py/pip)
 
 # About
-HtmlMetaDataParse, collects metadata from URL, or HTML content.
+[html-meta-data-parse](https://pypi.org/project/html-meta-data-parse/), collects metadata from URL, or HTML content.
 
 
 # Usage
