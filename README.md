@@ -45,10 +45,28 @@ from html_meta_data_parse import HtmlMetaDataParse
 html_meta_data_parse = HtmlMetaDataParse()
 html_meta_data_parse.get_meta_data_by_url('https://example.com/')
 
->>> html_meta_data_parse.get_meta_data_by_url("https://example.com/")
-{'title': 'Example Domain', 'content': 'Example Domain This domain is for use in illustrative examples in documents. You may use this\n    domain in literature without prior coordination or asking for permission. More information...'}
+>>> html_meta_data_parse.get_meta_data_by_url("https://www.pcmag.com/news/cloudflare-mitigates-nearly-2-tbps-ddos-attack")
+{
+  'title': 'Cloudflare Mitigates Nearly 2 Tbps DDoS Attack',
+  'image': 'https://i.pcmag.com/imagery/articles/00NczM1wpOM7qFzLIwNp6XG-1.fit_lim.size_1200x630.v1636923971.jpg',
+  'content': 'The attack was reportedly launched from approximately 15,000 devices.',
+  'type': 'article',
+  'twitter_handle': '@pcmag',
+  'site_name': 'PCMAG',
+  'url': 'https://www.pcmag.com/news/cloudflare-mitigates-nearly-2-tbps-ddos-attack'
+}
+
 >>> html_meta_data_parse.get_meta_data_by_url("https://www.cnet.com/tech/mobile/how-the-covid-19-pandemic-shaped-samsungs-new-galaxy-phone-update-launching-today/")
-{'author': 'https://www.facebook.com/cnet', 'title': 'Samsung knows the pandemic changed tech, so Galaxy phones are changing too', 'image': 'https://www.cnet.com/a/img/h15nl2OCT89fWO9h_-Jza3vf5w8=/0x0:4000x2667/1200x630/right/top/2021/01/20/249ee601-c66f-48c2-84c2-fbc7d1606c61/109-samsung-galaxy-s21-and-s21-ultra-comparison.jpg', 'content': "The company's decisions were affected by our evolving relationship with our phones.", 'type': 'article', 'twitter_handle': '@CNET', 'site_name': 'CNET', 'url': 'https://www.cnet.com/tech/mobile/how-the-covid-19-pandemic-shaped-samsungs-new-galaxy-phone-update-launching-today/'}
+{
+  'author': 'https://www.facebook.com/cnet',
+  'title': 'Samsung knows the pandemic changed tech, so Galaxy phones are changing too',
+  'image': 'https://www.cnet.com/a/img/h15nl2OCT89fWO9h_-Jza3vf5w8=/0x0:4000x2667/1200x630/right/top/2021/01/20/249ee601-c66f-48c2-84c2-fbc7d1606c61/109-samsung-galaxy-s21-and-s21-ultra-comparison.jpg',
+  'content': "The company's decisions were affected by our evolving relationship with our phones.",
+  'type': 'article',
+  'twitter_handle': '@CNET',
+  'site_name': 'CNET',
+  'url': 'https://www.cnet.com/tech/mobile/how-the-covid-19-pandemic-shaped-samsungs-new-galaxy-phone-update-launching-today/'
+}
 
 import requests
 res = requests.get("https://example.com/")
