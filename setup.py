@@ -7,7 +7,7 @@ long_description = (pathlib.Path(__file__).parent.resolve() / "README.md").read_
 )
 setup(
     name="html_meta_data_parse",
-    version="0.0.31",
+    version="0.0.32",
     python_requires=">=3.6",
     packages=find_packages(exclude=["tests"]),
     package_data={},
